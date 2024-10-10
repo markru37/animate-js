@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Circle Slider</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            transform-origin: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-element {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .pseudo-circle {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="circle-container" id="circle">
+        <div class="circle-element" data-index="1" style="top: 1%; left: 47%;">1</div>
+        <div class="circle-element" data-index="2" style="top: 25%; left: 85%;">2</div>
+        <div class="circle-element" data-index="3" style="top: 71%; left: 84%;">3</div>
+        <div class="circle-element" data-index="4" style="top: 91%; left: 47%;">4</div>
+        <div class="circle-element" data-index="5" style="top: 71%; left: 8%;">5</div>
+        <div class="circle-element" data-index="6" style="top: 25%; left: 7%;">6</div>
+        <div class="pseudo-circle"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script>
+        const elements = document.querySelectorAll('.circle-element');
+        let currentAngle = 0;
+
+        elements.forEach(element => {
+            element.addEventListener('click', () => {
+                const index = element.getAttribute('data-index');
+                rotateToElement(index);
+            });
+        });
+
+        function rotateToElement(index) {
+            const targetAngle = (index - 1) * 60;
+            const angleDiff = targetAngle - currentAngle;
+            currentAngle = targetAngle;
+            gsap.to(".circle-container", {
+                rotation: -currentAngle,
+                duration: 1,
+                ease: "power2.inOut",
+                onUpdate: fixElementOrientation
+            });
+        }
+
+        function fixElementOrientation() {
+            elements.forEach(element => {
+                gsap.set(element, {
+                    rotation: currentAngle
+                });
+            });
+        }
+
+        fixElementOrientation();
+    </script>
+
+</body>
+
+</html>

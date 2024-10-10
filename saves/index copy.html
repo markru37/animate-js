@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1 class="page__title">Исторические даты</h1>
+        <section class="container"></section>
+        <section class="year__block">
+        </section>
+        <section class="slider__block">
+            <div class="slide-count">
+                <label class="dynamic-number">1</label>/<label class="static-number"></label>
+            </div>
+            <div class="switch__button-container">
+                <button class="button-nav button-prev"></button>
+                <button class="button-nav button-next"></button>
+            </div>
+        </section>
+        <section class="infoblock__container">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+            </div>
+        </section>
+    </div>
+</body>
+<script type="module" src="script.js"></script>
+
+</html>
